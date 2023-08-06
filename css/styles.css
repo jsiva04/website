@@ -1,0 +1,178 @@
+/* DESIGN TOKENS */
+:root {
+	--grid: 4px;
+}
+
+/* COMPONENTS */
+/* The primary layout component that powers HStack and VStack */
+.flex {
+	--spacing: 4px;
+	--direction: row;
+	--align: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: var(--align);
+	flex-direction: var(--direction);
+}
+
+/* Adjust the spacing of all (immediate) inner children */
+.flex > * + * {
+	margin-left: var(--spacing);
+}
+
+/* Horizontally stack items in line. */
+.hstack {
+	--direction: row;
+}
+
+/* Vertically stack items on top of each other. */
+.vstack {
+	--align: stretch;
+	--direction: column;
+}
+/* Adjust spacing for vertically stacking items */
+.vstack > * + * {
+	margin-left: unset;
+	margin-top: var(--spacing);
+}
+
+/* Adaptive take up space within a stack, used for content or for pushing items. */
+.spacer {
+	flex: 1;
+}
+
+/* MODIFIERS */
+/* Adjusts spacing between items */
+.--sp1 {
+	--spacing: calc(var(--grid) * 1);
+}
+.--sp2 {
+	--spacing: calc(var(--grid) * 2);
+}
+.--sp3 {
+	--spacing: calc(var(--grid) * 3);
+}
+.--sp4 {
+	--spacing: calc(var(--grid) * 4);
+}
+.--sp5 {
+	--spacing: calc(var(--grid) * 5);
+}
+.--sp6 {
+	--spacing: calc(var(--grid) * 6);
+}
+
+/* Adjusts alignment of items within a stack. */
+.--top {
+	--align: flex-start;
+}
+.--left {
+	justify-content: flex-start;
+}
+.--center {
+	justify-content: center;
+}
+.--right {
+	justify-content: flex-end;
+}
+.--edge {
+	justify-content: space-between;
+}
+
+/* Vertically center items in a VStack */
+.--v-center {
+	--align: center;
+}
+
+/* RESPONSIVE */
+/* Responsive styles to swap between HStack and VStack for tablet/desktop */
+@media (min-width: 40em) {
+	.vstack\@md {
+		--align: stretch;
+		--direction: column;
+	}
+	.vstack\@md > * + * {
+		margin-left: unset;
+		margin-top: var(--spacing);
+	}
+}
+@media (min-width: 60em) {
+	.vstack\@lg {
+		--align: stretch;
+		--direction: column;
+	}
+	.vstack\@lg > * + * {
+		margin-left: unset;
+		margin-top: var(--spacing);
+	}
+}
+
+@media (min-width: 40em) {
+	.hstack\@md {
+		--direction: row;
+	}
+	.hstack\@md > * + * {
+		margin-top: unset;
+		margin-left: var(--spacing);
+	}
+}
+@media (min-width: 60em) {
+	.hstack\@lg {
+		--direction: row;
+	}
+	.hstack\@lg > * + * {
+		margin-top: unset;
+		margin-left: var(--spacing);
+	}
+}
+
+.dot {
+    height: 400px;
+    width: 536.592px;
+    border-radius: 50%;
+    background-color: rgba(255, 215, 0, 0.65);
+    filter: blur(200px);
+}
+
+body::-webkit-scrollbar{
+    display: none;
+}
+
+h1 {
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+}
+
+div .square {
+	height: 50px;
+	width: 50px;
+	background-color: #555;
+}
+
+.rect {
+	height: 200px;
+	width: 1200px;
+	border-radius: 37px;
+	background: rgba(112, 111, 110, 0.28);
+	opacity: 35%;
+	margin: auto;
+	color: white;
+	text-align: center;
+}
+
+@keyframes slideInLeft {
+	from {
+		transform: translateX(-10px);
+		opacity: 0%;
+	}
+
+	to {
+		transform: translateX(0);
+		opacity: 100%
+	}
+}
+
+.slideInLeft {
+	animation: slideInLeft 0.5s ease-in;
+}
